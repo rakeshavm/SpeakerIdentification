@@ -205,10 +205,10 @@ export default class Audio extends Component {
 
   giveAttendance = async () => {
     // var file = await RNFS.readFile(this.state.fileloc, 'base64');
-    console.log('s1', this.props.navigation.state.params.eid, this.state);
+    console.log('s1', this.state);
     var date = new Date().toLocaleTimeString();
     var form = new FormData();
-    form.append('eid', this.props.navigation.state.params.eid);
+    // form.append('eid', this.props.navigation.state.params.eid);
     form.append('audio', {
       name: 'test.wav',
       type: 'audio/wav',
@@ -222,7 +222,7 @@ export default class Audio extends Component {
       .post('http://192.168.29.124:2000/appAudio', form)
       .then(res => {
         console.log(res.data);
-        this.setState({result: res.data.result});
+        // this.setState({result: res.data.result});
       })
       .catch(e => console.log(e));
   };
@@ -248,8 +248,8 @@ export default class Audio extends Component {
   componentDidMount() {
     this.renderSentence();
     AudioRecord.init(this.options);
-    console.log('eid ', this.props.navigation.state.params.eid);
-    this.setState({eid: this.props.navigation.state.params.eid});
+    // console.log('eid ', this.props.navigation.state.params.eid);
+    // this.setState({eid: this.props.navigation.state.params.eid});
   }
 
   renderResult = () => {
@@ -261,12 +261,12 @@ export default class Audio extends Component {
   };
   render() {
     console.log('hi', RNFS.DocumentDirectoryPath);
-    console.log('eiidid', this.props.navigation.state.params.eid);
+    // console.log('eiidid', this.props.navigation.state.params.eid);
     return (
       <View style={styles.body}>
         <View style={styles.header}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Attendance', {})}>
+            onPress={() => this.props.navigation.navigate('Home', {})}>
             <Image style={styles.back} source={require('../assets/back.png')} />
           </TouchableOpacity>
           <View style={{marginLeft: 10, width: '50%'}}>

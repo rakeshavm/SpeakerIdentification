@@ -27,7 +27,7 @@ export default class Home extends Component {
     return (
       <View style={styles.body}>
         <View>
-          <Text style={styles.head}>Speaker Verification</Text>
+          <Text style={styles.head}>Speaker Identification</Text>
         </View>
         <View style={styles.line} />
         {/* <View style={styles.uid}>
@@ -55,7 +55,7 @@ export default class Home extends Component {
         </View>
         <View style={styles.login}>
           <TouchableOpacity
-            onPress={() => this.handleRoute('Attendance')}
+            onPress={() => this.handleRoute('Audiorec')}
             style={styles.addbutton1}>
             <Text
               style={{
@@ -64,6 +64,20 @@ export default class Home extends Component {
                 fontWeight: 'bold',
               }}>
               Verify user
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.login}>
+          <TouchableOpacity
+            onPress={() => this.handleRoute('Attendance')}
+            style={styles.addbutton1}>
+            <Text
+              style={{
+                color: '#FF6347',
+                fontFamily: 'Roboto',
+                fontWeight: 'bold',
+              }}>
+              Remove user
             </Text>
           </TouchableOpacity>
         </View>

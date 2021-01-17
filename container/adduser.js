@@ -54,23 +54,21 @@ export default class Home extends Component {
         recording: false,
         fileloc: audioFile,
       });
-      this.sendaudio(this.count);
+      this.sendaudio();
     }
   };
 
-  sendaudio = async num => {
+  sendaudio = async () => {
     var form = new FormData();
     form.append('audio', {
       name: 'regaud.wav',
       type: 'audio/wav',
       uri: 'file://' + this.state.fileloc,
     });
-    axios
-      .post('http://192.168.29.124:2000/reg' + num + 'Audio', form)
-      .then(res => {
-        console.log(res.data);
-        // this.setState({result: res.data.result});
-      });
+    axios.post('http://192.168.29.124:2000/reg1Audio', form).then(res => {
+      console.log(res.data);
+      // this.setState({result: res.data.result});
+    });
   };
 
   componentDidMount() {
@@ -130,10 +128,11 @@ export default class Home extends Component {
   };
 
   addUser = () => {
-    var formaudi = new FormData();
-    formaudi.append('eid', this.state.eid);
+    // var formaudi = new FormData();
+    console.log(this.state.eid);
+    // formaudi.append('eid', this.state.eid);
     axios
-      .post('http://192.168.29.124:2000/registerAudio', formaudi)
+      .post('http://192.168.29.124:2000/registerAudio', {eid: this.state.eid})
       .then(res => {
         console.log(res.data);
         // this.setState({result: res.data.result});
@@ -173,7 +172,7 @@ export default class Home extends Component {
               color: 'beige',
               textAlign: 'center',
             }}>
-            Sample 1 {'\n'}
+            Record audio {'\n'}
           </Text>
 
           <View style={styles.recordview}>
@@ -189,14 +188,14 @@ export default class Home extends Component {
               </TouchableOpacity>
             </View>
 
-            {/* {this.state.recording ? (
-            <View>
-              <Image
-                source={require('../assets/voice_loaderrr.gif')}
-                style={{height: 300, width: 300}}
-              />
-            </View>
-          ) : null} */}
+            {this.state.recording ? (
+              <View>
+                <Image
+                  source={require('../assets/voice_loaderrr.gif')}
+                  style={{height: 300, width: 300}}
+                />
+              </View>
+            ) : null}
 
             <View style={styles.stopbtn}>
               <TouchableOpacity
@@ -211,199 +210,7 @@ export default class Home extends Component {
             </View>
           </View>
         </View>
-        <View>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Roboto',
-              fontWeight: 'bold',
-              color: 'beige',
-              textAlign: 'center',
-            }}>
-            Sample 2 {'\n'}
-          </Text>
 
-          <View style={styles.recordview}>
-            <View style={styles.startbtn}>
-              <TouchableOpacity
-                disabled={this.state.recording}
-                onPress={this.startreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 50, height: 50}}
-                  source={require('../assets/play-button.png')}
-                />
-              </TouchableOpacity>
-            </View>
-
-            {/* {this.state.recording ? (
-            <View>
-              <Image
-                source={require('../assets/voice_loaderrr.gif')}
-                style={{height: 300, width: 300}}
-              />
-            </View>
-          ) : null} */}
-
-            <View style={styles.stopbtn}>
-              <TouchableOpacity
-                disabled={!this.state.recording}
-                onPress={this.stopreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 45, height: 45}}
-                  source={require('../assets/square.png')}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Roboto',
-              fontWeight: 'bold',
-              color: 'beige',
-              textAlign: 'center',
-            }}>
-            Sample 3 {'\n'}
-          </Text>
-
-          <View style={styles.recordview}>
-            <View style={styles.startbtn}>
-              <TouchableOpacity
-                disabled={this.state.recording}
-                onPress={this.startreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 50, height: 50}}
-                  source={require('../assets/play-button.png')}
-                />
-              </TouchableOpacity>
-            </View>
-
-            {/* {this.state.recording ? (
-            <View>
-              <Image
-                source={require('../assets/voice_loaderrr.gif')}
-                style={{height: 300, width: 300}}
-              />
-            </View>
-          ) : null} */}
-
-            <View style={styles.stopbtn}>
-              <TouchableOpacity
-                disabled={!this.state.recording}
-                onPress={this.stopreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 45, height: 45}}
-                  source={require('../assets/square.png')}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Roboto',
-              fontWeight: 'bold',
-              color: 'beige',
-              textAlign: 'center',
-            }}>
-            Sample 4 {'\n'}
-          </Text>
-
-          <View style={styles.recordview}>
-            <View style={styles.startbtn}>
-              <TouchableOpacity
-                disabled={this.state.recording}
-                onPress={this.startreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 50, height: 50}}
-                  source={require('../assets/play-button.png')}
-                />
-              </TouchableOpacity>
-            </View>
-
-            {/* {this.state.recording ? (
-            <View>
-              <Image
-                source={require('../assets/voice_loaderrr.gif')}
-                style={{height: 300, width: 300}}
-              />
-            </View>
-          ) : null} */}
-
-            <View style={styles.stopbtn}>
-              <TouchableOpacity
-                disabled={!this.state.recording}
-                onPress={this.stopreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 45, height: 45}}
-                  source={require('../assets/square.png')}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Roboto',
-              fontWeight: 'bold',
-              color: 'beige',
-              textAlign: 'center',
-            }}>
-            Sample 5 {'\n'}
-          </Text>
-
-          <View style={styles.recordview}>
-            <View style={styles.startbtn}>
-              <TouchableOpacity
-                disabled={this.state.recording}
-                onPress={this.startreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 50, height: 50}}
-                  source={require('../assets/play-button.png')}
-                />
-              </TouchableOpacity>
-            </View>
-
-            {/* {this.state.recording ? (
-            <View>
-              <Image
-                source={require('../assets/voice_loaderrr.gif')}
-                style={{height: 300, width: 300}}
-              />
-            </View>
-          ) : null} */}
-
-            <View style={styles.stopbtn}>
-              <TouchableOpacity
-                disabled={!this.state.recording}
-                onPress={this.stopreco}
-                style={styles.addbutton1}>
-                <Image
-                  style={{width: 45, height: 45}}
-                  source={require('../assets/square.png')}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        {/* {this.renderSample(1)}
-        {this.renderSample(2)}
-        {this.renderSample(3)}
-        {this.renderSample(4)} */}
-        {/* {this.renderSample(5)} */}
         <View style={styles.outer}>
           <TouchableOpacity onPress={this.addUser} style={styles.proceed}>
             <Text style={{color: '#FF6347'}}>Proceed</Text>

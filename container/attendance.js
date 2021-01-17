@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-
+import axios from 'axios';
 export default class Attendance extends Component {
   state = {
     eid: null,
@@ -31,7 +31,7 @@ export default class Attendance extends Component {
             textAlign: 'center',
           }}>
           {' '}
-          Attendance recorded{' '}
+          Speaker Verified{' '}
         </Text>
       </View>
     );
@@ -41,6 +41,16 @@ export default class Attendance extends Component {
     this.props.navigation.navigate(val, {
       eid: this.state.eid,
     });
+  };
+
+  removeUser = () => {
+    console.log(this.state.eid, 'Req sent');
+    axios
+      .post('http://192.168.29.124:2000/removeUser', {eid: this.state.eid})
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(e => console.log(e));
   };
 
   renderToAttend = () => {
@@ -56,9 +66,7 @@ export default class Attendance extends Component {
           />
         </View>
         <View style={styles.voicebtn}>
-          <TouchableOpacity
-            onPress={() => this.handleRoute('Audiorec')}
-            style={styles.addbutton1}>
+          <TouchableOpacity onPress={this.removeUser} style={styles.addbutton1}>
             <Text style={{color: '#FF6347'}}>Proceed</Text>
           </TouchableOpacity>
         </View>
@@ -90,7 +98,7 @@ export default class Attendance extends Component {
           </TouchableOpacity>
           <View style={{marginLeft: 10, width: '50%'}}>
             <Text style={{fontSize: 25, fontWeight: 'bold', color: 'beige'}}>
-              Welcome
+              Remove user
             </Text>
           </View>
         </View>
