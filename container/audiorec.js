@@ -208,6 +208,7 @@ export default class Audio extends Component {
     console.log('s1', this.state);
     var date = new Date().toLocaleTimeString();
     var form = new FormData();
+    var strarr = this.state.sentance.split(' ');
     // form.append('eid', this.props.navigation.state.params.eid);
     form.append('audio', {
       name: 'test.wav',
@@ -217,6 +218,7 @@ export default class Audio extends Component {
     form.append('timestamp', date);
     form.append('lat', this.state.lat);
     form.append('long', this.state.long);
+    form.append('sentence', strarr);
 
     axios
       .post('http://192.168.29.124:2000/appAudio', form)
