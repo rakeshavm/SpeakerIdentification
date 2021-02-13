@@ -218,10 +218,10 @@ export default class Audio extends Component {
     form.append('timestamp', date);
     form.append('lat', this.state.lat);
     form.append('long', this.state.long);
-    form.append('sentence', strarr);
+    form.append('sentence', this.state.sentance);
 
     axios
-      .post('http://192.168.29.124:2000/appAudio', form)
+      .post('http:/10.116.239.162:2000/appAudio', form)
       .then(res => {
         console.log(res.data);
         // this.setState({result: res.data.result});

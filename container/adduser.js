@@ -24,6 +24,7 @@ export default class Home extends Component {
     // id: 'b32ce6ab77e14591aac2646405775cdf',
     recording: false,
     fileloc: '',
+    sentance: '',
   };
   options = {
     sampleRate: 16000, // default 44100
@@ -71,7 +72,26 @@ export default class Home extends Component {
     });
   };
 
+  renderSentence = () => {
+    let arr = [
+      'It is a long established fact that a reader will be distracted',
+      'The readable content of a page when looking at its layout.',
+      'Contrary to popular belief, Lorem Ipsum is not simply random text',
+      'Thank you for your support, Lorem Ipsum is not simply random text',
+      'The standard Lorem Ipsum passage is used since the 1500s',
+      'It is a long established fact that a reader will be distracted',
+      'The readable content of a page when looking at its layout.',
+      'Contrary to popular belief, Lorem Ipsum is not simply random text',
+      'Thank you for your support,a set of words that is complete in itself',
+      'The standard Lorem Ipsum passage is used since the 1500s',
+    ];
+    let r = Math.floor(Math.random() * 10);
+    console.log(arr[r], 'in');
+    this.setState({sentance: arr[r]});
+  };
+
   componentDidMount() {
+    this.renderSentence();
     AudioRecord.init(this.options);
   }
 
@@ -132,7 +152,10 @@ export default class Home extends Component {
     console.log(this.state.eid);
     // formaudi.append('eid', this.state.eid);
     axios
-      .post('http://192.168.29.124:2000/registerAudio', {eid: this.state.eid})
+      .post('http://10.116.239.162:2000/registerAudio', {
+        eid: this.state.eid,
+        sentence: this.state.sentance,
+      })
       .then(res => {
         console.log(res.data);
         // this.setState({result: res.data.result});
@@ -164,16 +187,29 @@ export default class Home extends Component {
           />
         </View>
         <View>
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: 'Roboto',
-              fontWeight: 'bold',
-              color: 'beige',
-              textAlign: 'center',
-            }}>
-            Record audio {'\n'}
-          </Text>
+          <View>
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: 'Roboto',
+                fontWeight: 'bold',
+                color: 'beige',
+                textAlign: 'center',
+              }}>
+              Repeat the following sentence {'\n'}
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: 'Roboto',
+                fontWeight: 'bold',
+                color: '#FF6347',
+                textAlign: 'center',
+              }}>
+              {' '}
+              {this.state.sentance + '\n'}
+            </Text>
+          </View>
 
           <View style={styles.recordview}>
             <View style={styles.startbtn}>
