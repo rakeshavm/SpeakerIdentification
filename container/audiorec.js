@@ -12,6 +12,13 @@ import {
   Dimensions,
 } from 'react-native';
 import axios from 'axios';
+// import Dialog, {
+//   DialogFooter,
+//   DialogButton,
+//   ScaleAnimation,
+//   DialogContent,
+// } from 'react-native-popup-dialog';
+import Modal from 'react-native-modal';
 import AudioRecord from 'react-native-audio-record';
 import {Buffer} from 'buffer';
 import RNFS from 'react-native-fs';
@@ -30,6 +37,8 @@ export default class Audio extends Component {
     result: -1,
     eid: null,
     sentance: '',
+    vis: false,
+    res: 'hello',
     // id: 'b32ce6ab77e14591aac2646405775cdf',
   };
   options = {
@@ -60,11 +69,6 @@ export default class Audio extends Component {
       recording: true,
     });
   };
-
-  componentWillMount() {
-    this.getLocation();
-  }
-
   stopreco = async () => {
     // AudioRecord.stop();
     // this.renderSentence();
@@ -206,6 +210,8 @@ export default class Audio extends Component {
   giveAttendance = async () => {
     // var file = await RNFS.readFile(this.state.fileloc, 'base64');
     console.log('s1', this.state);
+    // this.setState({vis: true});
+
     var date = new Date().toLocaleTimeString();
     var form = new FormData();
     var strarr = this.state.sentance.split(' ');
@@ -223,6 +229,8 @@ export default class Audio extends Component {
     axios
       .post('http:/10.116.239.162:2000/appAudio', form)
       .then(res => {
+        this.setState({res: res.data});
+        this.setState({vis: true});
         console.log(res.data);
         // this.setState({result: res.data.result});
       })
@@ -231,20 +239,119 @@ export default class Audio extends Component {
 
   renderSentence = () => {
     let arr = [
-      'It is a long established fact that a reader will be distracted',
-      'The readable content of a page when looking at its layout.',
-      'Contrary to popular belief, Lorem Ipsum is not simply random text',
-      'Thank you for your support, Lorem Ipsum is not simply random text',
-      'The standard Lorem Ipsum passage is used since the 1500s',
-      'It is a long established fact that a reader will be distracted',
-      'The readable content of a page when looking at its layout.',
-      'Contrary to popular belief, Lorem Ipsum is not simply random text',
-      'Thank you for your support,a set of words that is complete in itself',
-      'The standard Lorem Ipsum passage is used since the 1500s',
+      'taboo',
+      'field',
+      'time',
+      'same',
+      'uttermost',
+      'irritate',
+      'lackadaisical',
+      'adjustment',
+      'prose',
+      'anxious',
+      'empty',
+      'channel',
+      'obese',
+      'neat',
+      'sophisticated',
+      'control',
+      'seal',
+      'muscle',
+      'doll',
+      'giddy',
+      'advertisement',
+      'suffer',
+      'tedious',
+      'direful',
+      'stranger',
+      'sick',
+      'grubby',
+      'bruise',
+      'leg',
+      'fang',
+      'pin',
+      'pop',
+      'jagged',
+      'cut',
+      'friend',
+      'branch',
+      'wrong',
+      'canvas',
+      'top',
+      'meek',
+      'back',
+      'ordinary',
+      'grandiose',
+      'borrow',
+      'cluttered',
+      'dock',
+      'trace',
+      'clap',
+      'steadfast',
+      'planes',
+      'uneven',
+      'bang',
+      'lacking',
+      'curved',
+      'excite',
+      'dependent',
+      'plough',
+      'absorbing',
+      'solid',
+      'ambitious',
+      'jobless',
+      'hallowed',
+      'clip',
+      'soggy',
+      'giraffe',
+      'book',
+      'homely',
+      'angle',
+      'notice',
+      'wrestle',
+      'minister',
+      'cover',
+      'iron',
+      'grumpy',
+      'average',
+      'fearful',
+      'tawdry',
+      'wanting',
+      'wind',
+      'love',
+      'resolute',
+      'sulky',
+      'glue',
+      'van',
+      'brawny',
+      'addicted',
+      'spiders',
+      'stamp',
+      'godly',
+      'petite',
+      'hurry',
+      'male',
+      'familiar',
+      'ski',
+      'replace',
+      'amount',
+      'regular',
+      'ablaze',
+      'treatment',
+      'order',
     ];
-    let r = Math.floor(Math.random() * 10);
-    console.log(arr[r], 'in');
-    this.setState({sentance: arr[r]});
+    var sen = [];
+    var i = 0;
+    while (i < 10) {
+      let r = Math.floor(Math.random() * 100);
+      if (sen.indexOf(arr[r]) < 0) {
+        sen.push(arr[r]);
+        i = i + 1;
+      }
+    }
+    var sentence = sen.join(' ');
+    console.log(sentence, 'in');
+    this.setState({sentance: sentence});
   };
 
   componentDidMount() {
@@ -279,7 +386,7 @@ export default class Audio extends Component {
                 color: 'beige',
                 width: 400,
               }}>
-              Record and Proceed
+              Identify User
             </Text>
           </View>
         </View>
@@ -301,7 +408,7 @@ export default class Audio extends Component {
                 fontSize: 20,
                 fontFamily: 'Roboto',
                 fontWeight: 'bold',
-                color: '#FF6347',
+                color: '#ff6347',
                 textAlign: 'center',
               }}>
               {' '}
@@ -351,10 +458,38 @@ export default class Audio extends Component {
             <TouchableOpacity
               onPress={this.giveAttendance}
               style={styles.proceed}>
-              <Text style={{color: '#FF6347'}}>Proceed</Text>
+              <Text style={{color: '#ff6347'}}>Proceed</Text>
             </TouchableOpacity>
           </View>
-          <View>{this.renderResult()}</View>
+          <View>
+            <Modal
+              // style={styles.dialog}
+              // coverScreen={false}
+              onBackButtonPress={() => {
+                this.setState({vis: false});
+              }}
+              onBackdropPress={() => {
+                this.setState({vis: false});
+              }}
+              isVisible={this.state.vis}>
+              <View style={styles.content}>
+                <Text style={styles.contentTitle}>{this.state.res}</Text>
+                <TouchableOpacity
+                  style={styles.dialog}
+                  title="Close"
+                  onPress={() => {
+                    this.setState({vis: false});
+                  }}>
+                  <Text style={{color: '#ff6347'}}>Close</Text>
+                </TouchableOpacity>
+              </View>
+              {/* <View style={styles.content}>
+                <Text style={styles.contentTitle}>Hi 👋!</Text>
+                <Button title="Close" />
+              </View> */}
+            </Modal>
+          </View>
+          {/* <View>{this.renderResult()}</View> */}
         </View>
       </View>
     );
@@ -362,6 +497,24 @@ export default class Audio extends Component {
 }
 
 const styles = {
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  content: {
+    backgroundColor: 'whitesmoke',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  contentTitle: {
+    color: '#ff6347',
+    fontSize: 20,
+    marginBottom: 12,
+  },
   parent: {
     flexDirection: 'column',
     width: 500,
@@ -441,10 +594,23 @@ const styles = {
     // fontFamily: 'Roboto',
     // fontWeight: 'bold',
     // borderRadius: 10,
-    // color: '#FF6347',
+    // color: '#ff6347',
     // textAlign: 'center',
   },
-
+  dialog: {
+    width: Dimensions.get('window').width * 0.4,
+    height: 50,
+    backgroundColor: 'black',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // marginLeft: 3,
+    shadowColor: 'black',
+    shadowOffset: {width: 10, height: 10},
+    shadowOpacity: 1,
+    // elevation: 5,
+    shadowRadius: 6,
+  },
   startbtn: {
     alignItems: 'center',
     justifyContent: 'center',

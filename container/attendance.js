@@ -13,10 +13,14 @@ import {
   Image,
 } from 'react-native';
 import axios from 'axios';
+import Modal from 'react-native-modal';
+
 export default class Attendance extends Component {
   state = {
     eid: null,
     attended: null,
+    vis: false,
+    res: 'hello',
   };
 
   renderAttended = () => {
@@ -45,9 +49,13 @@ export default class Attendance extends Component {
 
   removeUser = () => {
     console.log(this.state.eid, 'Req sent');
+    // this.setState({vis: true});
+
     axios
       .post('http://192.168.29.124:2000/removeUser', {eid: this.state.eid})
       .then(res => {
+        this.setState({res: res.data});
+        this.setState({vis: true});
         console.log(res.data);
       })
       .catch(e => console.log(e));
@@ -60,22 +68,50 @@ export default class Attendance extends Component {
           <TextInput
             style={styles.searchbox}
             placeholder="Enter uid"
-            placeholderTextColor="#FF6347"
+            placeholderTextColor="#ff6347"
             onChangeText={text => this.setState({eid: text})}
             value={this.state.eid}
           />
         </View>
         <View style={styles.voicebtn}>
           <TouchableOpacity onPress={this.removeUser} style={styles.addbutton1}>
-            <Text style={{color: '#FF6347'}}>Proceed</Text>
+            <Text style={{color: '#ff6347'}}>Proceed</Text>
           </TouchableOpacity>
+        </View>
+        <View>
+          <Modal
+            // style={styles.dialog}
+            // coverScreen={false}
+            onBackButtonPress={() => {
+              this.setState({vis: false});
+            }}
+            onBackdropPress={() => {
+              this.setState({vis: false});
+            }}
+            isVisible={this.state.vis}>
+            <View style={styles.content}>
+              <Text style={styles.contentTitle}>{this.state.res}</Text>
+              <TouchableOpacity
+                style={styles.dialog}
+                title="Close"
+                onPress={() => {
+                  this.setState({vis: false});
+                }}>
+                <Text style={{color: '#ff6347'}}>Close</Text>
+              </TouchableOpacity>
+            </View>
+            {/* <View style={styles.content}>
+                <Text style={styles.contentTitle}>Hi 👋!</Text>
+                <Button title="Close" />
+              </View> */}
+          </Modal>
         </View>
         {/* <View style={styles.line} /> */}
         {/* <View style={styles.facebtn}>
           <TouchableOpacity
             onPress={() => this.handleRoute('Pic')}
             style={styles.addbutton1}>
-            <Text style={{color: '#FF6347'}}>Face</Text>
+            <Text style={{color: '#ff6347'}}>Face</Text>
           </TouchableOpacity>
         </View> */}
       </View>
@@ -113,6 +149,33 @@ const styles = {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'black',
+  },
+  content: {
+    backgroundColor: 'whitesmoke',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  contentTitle: {
+    color: '#ff6347',
+    fontSize: 20,
+    marginBottom: 12,
+  },
+  dialog: {
+    width: Dimensions.get('window').width * 0.4,
+    height: 50,
+    backgroundColor: 'black',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // marginLeft: 3,
+    shadowColor: 'black',
+    shadowOffset: {width: 10, height: 10},
+    shadowOpacity: 1,
+    // elevation: 5,
+    shadowRadius: 6,
   },
   header: {
     alignItems: 'center',
@@ -182,7 +245,7 @@ const styles = {
     fontFamily: 'Roboto',
     fontWeight: 'bold',
     borderRadius: 10,
-    color: '#FF6347',
+    color: '#ff6347',
     textAlign: 'center',
   },
   searchbox: {
@@ -198,13 +261,13 @@ const styles = {
     // shadowOpacity: 0.3,
     // elevation: 1,
     borderRadius: 30,
-    color: '#FF6347',
+    color: '#ff6347',
     textAlign: 'center',
   },
   line: {
     width: Dimensions.get('window').width * 0.6,
     height: 2,
     borderTopWidth: 1,
-    borderColor: '#FF6347',
+    borderColor: '#ff6347',
   },
 };

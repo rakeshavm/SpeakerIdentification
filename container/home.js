@@ -26,15 +26,15 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.body}>
-        <View>
+        {/* <View>
           <Text style={styles.head}>Speaker Identification</Text>
-        </View>
-        <View style={styles.line} />
+        </View> */}
+        {/* <View style={styles.line} /> */}
         {/* <View style={styles.uid}>
           <TextInput
             style={styles.searchbox}
             placeholder="Enter uid"
-            placeholderTextColor="#FF6347"
+            placeholderTextColor="#ff6347"
             onChangeText={text => this.setState({eid: text})}
             // value={this.state.uid}
           />
@@ -45,7 +45,7 @@ export default class Home extends Component {
             style={styles.addbutton1}>
             <Text
               style={{
-                color: '#FF6347',
+                color: '#ff6347',
                 fontFamily: 'Roboto',
                 fontWeight: 'bold',
               }}>
@@ -59,11 +59,11 @@ export default class Home extends Component {
             style={styles.addbutton1}>
             <Text
               style={{
-                color: '#FF6347',
+                color: '#ff6347',
                 fontFamily: 'Roboto',
                 fontWeight: 'bold',
               }}>
-              Verify user
+              Identify user
             </Text>
           </TouchableOpacity>
         </View>
@@ -73,7 +73,7 @@ export default class Home extends Component {
             style={styles.addbutton1}>
             <Text
               style={{
-                color: '#FF6347',
+                color: '#ff6347',
                 fontFamily: 'Roboto',
                 fontWeight: 'bold',
               }}>
@@ -95,7 +95,7 @@ const styles = {
     backgroundColor: 'black',
   },
   head: {
-    color: '#FF6347',
+    color: '#ff6347',
     fontSize: 30,
     width: 200,
     textAlign: 'center',
@@ -126,7 +126,7 @@ const styles = {
     // shadowOpacity: 0.3,
     // elevation: 1,
     borderRadius: 30,
-    color: '#FF6347',
+    color: '#ff6347',
     textAlign: 'center',
   },
   addbutton1: {
@@ -137,13 +137,13 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#FF6347',
+    borderColor: '#ff6347',
     marginLeft: 3,
   },
   line: {
     width: Dimensions.get('window').width * 0.6,
     height: 2,
     borderTopWidth: 1,
-    borderColor: '#FF6347',
+    borderColor: '#ff6347',
   },
 };
