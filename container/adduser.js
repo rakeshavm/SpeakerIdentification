@@ -69,7 +69,7 @@ export default class Home extends Component {
       type: 'audio/wav',
       uri: 'file://' + this.state.fileloc,
     });
-    axios.post('http://192.168.29.124:2000/reg1Audio', form).then(res => {
+    axios.post('http://192.168.1.8:2000/reg1Audio', form).then(res => {
       console.log(res.data);
       // this.setState({result: res.data.result});
     });
@@ -180,15 +180,16 @@ export default class Home extends Component {
     ];
     var sen = [];
     var i = 0;
-    while (i < 10) {
-      let r = Math.floor(Math.random() * 100);
-      if (sen.indexOf(arr[r]) < 0) {
-        sen.push(arr[r]);
-        i = i + 1;
-      }
-    }
-    var sentence = sen.join(' ');
-    console.log(sentence, 'in');
+    // while (i < 10) {
+    //   let r = Math.floor(Math.random() * 100);
+    //   if (sen.indexOf(arr[r]) < 0) {
+    //     sen.push(arr[r]);
+    //     i = i + 1;
+    //   }
+    // }
+    // var sentence = sen.join(' ');
+    // console.log(sentence, 'in');
+    sentence = 'check back tomorrow I will see if the book has arrived';
     this.setState({sentance: sentence});
   };
 
@@ -255,14 +256,15 @@ export default class Home extends Component {
     // this.setState({vis: true});
     // formaudi.append('eid', this.state.eid);
     axios
-      .post('http://10.116.239.162:2000/registerAudio', {
+      .post('http://192.168.1.8:2000/registerAudio', {
         eid: this.state.eid,
         sentence: this.state.sentance,
       })
       .then(res => {
-        this.setState({res: res.data});
+        console.log(res);
+        this.setState({res: res.data['msg']});
         this.setState({vis: true});
-        console.log(res.data);
+        // console.log(res.data);
         // this.setState({result: res.data.result});
       })
       .catch(e => console.log(e));
@@ -273,7 +275,7 @@ export default class Home extends Component {
       <View style={styles.body}>
         <View style={styles.header}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home')}>
+            onPress={() => this.props.navigation.navigate('Home', {dependent:this.props.navigation.state.params.dependent})}>
             <Image style={styles.back} source={require('../assets/back.png')} />
           </TouchableOpacity>
           <View style={{marginLeft: 10, width: '50%'}}>

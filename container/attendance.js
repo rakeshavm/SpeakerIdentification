@@ -52,11 +52,11 @@ export default class Attendance extends Component {
     // this.setState({vis: true});
 
     axios
-      .post('http://192.168.29.124:2000/removeUser', {eid: this.state.eid})
+      .post('http://192.168.1.8:2000/removeUser', {eid: this.state.eid})
       .then(res => {
-        this.setState({res: res.data});
+        this.setState({res: res.data['data']});
         this.setState({vis: true});
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(e => console.log(e));
   };
@@ -129,7 +129,7 @@ export default class Attendance extends Component {
       <View style={styles.body}>
         <View style={styles.header}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home')}>
+            onPress={() => this.props.navigation.navigate('Home', {dependent: this.props.navigation.state.params.dependent})}>
             <Image style={styles.back} source={require('../assets/back.png')} />
           </TouchableOpacity>
           <View style={{marginLeft: 10, width: '50%'}}>
@@ -186,7 +186,7 @@ const styles = {
     shadowColor: 'black',
     shadowOffset: {width: 0, height: 10},
     shadowOpacity: 0.9,
-    elevation: 6,
+    // elevation: 6,
     backgroundColor: '#383838',
     color: 'beige',
   },
@@ -205,7 +205,7 @@ const styles = {
     width: '80%',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginTop: '50%',
+    // marginTop: '50%',
   },
   attend: {
     alignItems: 'center',
@@ -219,6 +219,7 @@ const styles = {
     justifyContent: 'space-around',
     alignItems: 'center',
     marginBottom: '8%',
+    marginTop: '20%',
   },
   facebtn: {
     justifyContent: 'space-around',

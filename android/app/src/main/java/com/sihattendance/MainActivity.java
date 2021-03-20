@@ -1,4 +1,4 @@
-package com.sihattendance;
+package com.voice_recog;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "sihattendance";
+    return "voice_recog";
   }
 }

@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "sihattendance-tvOS.app"
-               BlueprintName = "sihattendance-tvOS"
-               ReferencedContainer = "container:sihattendance.xcodeproj">
+               BuildableName = "voice_recog-tvOS.app"
+               BlueprintName = "voice_recog-tvOS"
+               ReferencedContainer = "container:voice_recog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "sihattendance-tvOSTests.xctest"
-               BlueprintName = "sihattendance-tvOSTests"
-               ReferencedContainer = "container:sihattendance.xcodeproj">
+               BuildableName = "voice_recog-tvOSTests.xctest"
+               BlueprintName = "voice_recog-tvOSTests"
+               ReferencedContainer = "container:voice_recog.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "sihattendance-tvOSTests.xctest"
-               BlueprintName = "sihattendance-tvOSTests"
-               ReferencedContainer = "container:sihattendance.xcodeproj">
+               BuildableName = "voice_recog-tvOSTests.xctest"
+               BlueprintName = "voice_recog-tvOSTests"
+               ReferencedContainer = "container:voice_recog.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "sihattendance-tvOS.app"
-            BlueprintName = "sihattendance-tvOS"
-            ReferencedContainer = "container:sihattendance.xcodeproj">
+            BuildableName = "voice_recog-tvOS.app"
+            BlueprintName = "voice_recog-tvOS"
+            ReferencedContainer = "container:voice_recog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "sihattendance-tvOS.app"
-            BlueprintName = "sihattendance-tvOS"
-            ReferencedContainer = "container:sihattendance.xcodeproj">
+            BuildableName = "voice_recog-tvOS.app"
+            BlueprintName = "voice_recog-tvOS"
+            ReferencedContainer = "container:voice_recog.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "sihattendance-tvOS.app"
-            BlueprintName = "sihattendance-tvOS"
-            ReferencedContainer = "container:sihattendance.xcodeproj">
+            BuildableName = "voice_recog-tvOS.app"
+            BlueprintName = "voice_recog-tvOS"
+            ReferencedContainer = "container:voice_recog.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -221,17 +221,20 @@ export default class Audio extends Component {
       type: 'audio/wav',
       uri: 'file://' + this.state.fileloc,
     });
-    form.append('timestamp', date);
-    form.append('lat', this.state.lat);
-    form.append('long', this.state.long);
+    // form.append('timestamp', date);
+    // form.append('lat', this.state.lat);
+    // form.append('long', this.state.long);
     form.append('sentence', this.state.sentance);
+    form.append('dependent', this.props.navigation.state.params.dependent);
 
     axios
-      .post('http:/10.116.239.162:2000/appAudio', form)
+      .post('http://192.168.1.8:2000/appAudio', form)
       .then(res => {
-        this.setState({res: res.data});
+        this.setState({
+          res: res.data['data']['text'] + '\n' + res.data['data']['speaker'],
+        });
         this.setState({vis: true});
-        console.log(res.data);
+        // console.log(res.data);
         // this.setState({result: res.data.result});
       })
       .catch(e => console.log(e));
@@ -375,7 +378,7 @@ export default class Audio extends Component {
       <View style={styles.body}>
         <View style={styles.header}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home', {})}>
+            onPress={() => this.props.navigation.navigate('Home', {dependent: this.props.navigation.state.params.dependent})}>
             <Image style={styles.back} source={require('../assets/back.png')} />
           </TouchableOpacity>
           <View style={{marginLeft: 10, width: '50%'}}>

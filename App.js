@@ -13,6 +13,7 @@ import Home from './container/home';
 import Attendance from './container/attendance';
 import Pic from './container/photo';
 import Adduser from './container/adduser';
+import Choice from './container/choice';
 import {
   SafeAreaView,
   StyleSheet,
@@ -34,6 +35,7 @@ import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {check, PERMISSIONS, request} from 'react-native-permissions';
 
 const AppSwitchNavigator = createSwitchNavigator({
+  Choice:{screen: Choice},
   Home: {screen: Home},
   Attendance: {screen: Attendance},
   Loc: {screen: Location},

@@ -6,7 +6,6 @@ import {
   ScrollView,
   View,
   Text,
-  Image,
   TextInput,
   StatusBar,
   Dimensions,
@@ -14,18 +13,14 @@ import {
 } from 'react-native';
 import Axios from 'axios';
 
-export default class Home extends Component {
+export default class Choice extends Component {
   state = {
     // eid: null,
     // id: 'b32ce6ab77e14591aac2646405775cdf',
   };
 
-  handleRoute = val => {
-    this.props.navigation.navigate(val, {val: false /*,eid: this.state.eid*/});
-  };
-
-  handleRoute2 = (val, d) => {
-    this.props.navigation.navigate(val, {val: false, dependent: d});
+  handleRoute = (val, dep) => {
+    this.props.navigation.navigate(val, {val: false, dependent: dep/*,eid: this.state.eid*/});
   };
 
   render() {
@@ -44,27 +39,9 @@ export default class Home extends Component {
             // value={this.state.uid}
           />
         </View> */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Choice', {})}>
-            <Image style={styles.back} source={require('../assets/back.png')} />
-          </TouchableOpacity>
-          <View style={{marginLeft: 10, width: '50%'}}>
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: 'bold',
-                color: 'beige',
-                width: 400
-              }}>
-              Voice recognition
-            </Text>
-          </View>
-        </View>
-        <View style={styles.buts}>
         <View style={styles.login}>
           <TouchableOpacity
-            onPress={() => this.handleRoute2('Adduser', this.props.navigation.state.params.dependent)}
+            onPress={() => this.handleRoute('Home', 'True')}
             style={styles.addbutton1}>
             <Text
               style={{
@@ -72,13 +49,13 @@ export default class Home extends Component {
                 fontFamily: 'Roboto',
                 fontWeight: 'bold',
               }}>
-              Add user
+              Text dependent
             </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.login}>
           <TouchableOpacity
-            onPress={() => this.handleRoute2('Audiorec', this.props.navigation.state.params.dependent)}
+            onPress={() => this.handleRoute('Home', 'False')}
             style={styles.addbutton1}>
             <Text
               style={{
@@ -86,25 +63,10 @@ export default class Home extends Component {
                 fontFamily: 'Roboto',
                 fontWeight: 'bold',
               }}>
-              Identify user
+              Text independent
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.login}>
-          <TouchableOpacity
-            onPress={() => this.handleRoute2('Attendance', this.props.navigation.state.params.dependent)}
-            style={styles.addbutton1}>
-            <Text
-              style={{
-                color: '#ff6347',
-                fontFamily: 'Roboto',
-                fontWeight: 'bold',
-              }}>
-              Remove user
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
       </View>
     );
   }
@@ -114,8 +76,8 @@ const styles = {
   body: {
     flex: 1,
     flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'black',
   },
   head: {
@@ -124,9 +86,6 @@ const styles = {
     width: 200,
     textAlign: 'center',
     fontWeight: 'bold',
-  },
-  buts:{
-    marginTop:'30%'
   },
   uid: {
     flexDirection: 'row',
@@ -156,26 +115,8 @@ const styles = {
     color: '#ff6347',
     textAlign: 'center',
   },
-  header: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    width: '100%',
-    height: 60,
-    // borderWidth:1,
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 10},
-    shadowOpacity: 0.9,
-    elevation: 6,
-    backgroundColor: '#383838',
-  },
- 
-  back: {
-    marginLeft: 5,
-    height: 35,
-    width: 35,
-  },
   addbutton1: {
-    width: Dimensions.get('window').width * 0.3,
+    width: Dimensions.get('window').width * 0.6,
     height: 60,
     backgroundColor: '#383838',
     borderRadius: 10,

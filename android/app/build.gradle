@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.sihattendance"
+        applicationId "com.voice_recog"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

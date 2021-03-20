@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'sihattendance' do
-  # Pods for sihattendance
+target 'voice_recog' do
+  # Pods for voice_recog
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -38,7 +38,7 @@ target 'sihattendance' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
-  target 'sihattendanceTests' do
+  target 'voice_recogTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -46,10 +46,10 @@ target 'sihattendance' do
   use_native_modules!
 end
 
-target 'sihattendance-tvOS' do
-  # Pods for sihattendance-tvOS
+target 'voice_recog-tvOS' do
+  # Pods for voice_recog-tvOS
 
-  target 'sihattendance-tvOSTests' do
+  target 'voice_recog-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
