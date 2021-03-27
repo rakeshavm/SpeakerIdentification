@@ -180,16 +180,15 @@ export default class Home extends Component {
     ];
     var sen = [];
     var i = 0;
-    // while (i < 10) {
-    //   let r = Math.floor(Math.random() * 100);
-    //   if (sen.indexOf(arr[r]) < 0) {
-    //     sen.push(arr[r]);
-    //     i = i + 1;
-    //   }
-    // }
-    // var sentence = sen.join(' ');
-    // console.log(sentence, 'in');
-    sentence = 'check back tomorrow I will see if the book has arrived';
+    while (i < 10) {
+      let r = Math.floor(Math.random() * 100);
+      if (sen.indexOf(arr[r]) < 0) {
+        sen.push(arr[r]);
+        i = i + 1;
+      }
+    }
+    var sentence = sen.join(' ');
+    console.log(sentence, 'in');
     this.setState({sentance: sentence});
   };
 
@@ -275,7 +274,11 @@ export default class Home extends Component {
       <View style={styles.body}>
         <View style={styles.header}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home', {dependent:this.props.navigation.state.params.dependent})}>
+            onPress={() =>
+              this.props.navigation.navigate('Home', {
+                dependent: this.props.navigation.state.params.dependent,
+              })
+            }>
             <Image style={styles.back} source={require('../assets/back.png')} />
           </TouchableOpacity>
           <View style={{marginLeft: 10, width: '50%'}}>
